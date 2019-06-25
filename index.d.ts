@@ -1,4 +1,7 @@
+
 declare module 'react-native-nordic-dfu' {
+  import StrictEventEmitter from 'strict-event-emitter-types';
+  import {NativeEventEmitter} from 'react-native'
   export class NordicDFU {
     static startDFU({
       deviceAddress,
@@ -17,15 +20,18 @@ declare module 'react-native-nordic-dfu' {
     partsTotal?: number;
     avgSpeed?: number;
     speed?: number;
-    state?: string;
   }
 
-  export class DFUEmitter {
-    static addListener(
-      name: 'DFUProgress' | 'DFUStateChanged',
-      handler: (update: IDfuUpdate) => void
-    ): void;
-
-    static removeAllListeners(name: 'DFUProgress' | 'DFUStateChanged'): void;
+  export interface IStateUpdate {
+    state?: 'DFU_ABORTED' | 'DFU_PROCESS_STARTING' | 'DFU_COMPLETED' | 'DFU_STATE_UPLOADING' | 'CONNECTING' | 'FIRMWARE_VALIDATING' | 'DEVICE_DISCONNECTING' | 'ENABLING_DFU_MODE' | 'UNKNOWN_STATE'
   }
+
+  interface Events {
+    DFUProgress: (state: IDfuUpdate) => void;
+    DFUStateChanged: (state: IStateUpdate) => void;
+  }
+
+  type DFUEventEmitter = StrictEventEmitter<NativeEventEmitter, Events>;
+
+  export class DFUEmitter extends NativeEventEmitter {}
 }

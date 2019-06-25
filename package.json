@@ -36,5 +36,8 @@
       "git add README.md"
     ]
   },
-  "types": "./index.d.ts"
+  "types": "./index.d.ts",
+  "dependencies": {
+    "strict-event-emitter-types": "^2.0.0"
+  }
 }
