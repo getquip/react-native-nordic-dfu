@@ -225,14 +225,26 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
         initiator.delegate = self;
         initiator.progressDelegate = self;
 
-        DFUServiceController * controller = [initiator start];
+        self.controller = [initiator startWithTarget:peripheral];
         [NSThread sleepForTimeInterval: 1]; //Work around for being stuck in iOS 13
       }
     }
   }
 }
 
-+ (void)setCentralManagerGetter:(CBCentralManager * (^)())getter
+RCT_EXPORT_METHOD(abortDFU:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject) {
+    if (self.controller != nil) {
+        bool aborted = [self.controller abort];
+        self.controller = nil;
+        resolve([NSNumber numberWithBool:aborted]);
+    } else {
+        reject(@"no_controller", @"Controller is not instanciated yet, use startDFU method first.", nil);
+    }
+
+}
+
++ (void)setCentralManagerGetter:(CBCentralManager * (^)(void))getter
 {
   getCentralManager = getter;
 }

@@ -19,6 +19,7 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
     public static final String LOG_TAG = name;
     private final ReactApplicationContext reactContext;
     private Promise mPromise = null;
+    private DfuServiceController controller = null;
 
     public RNNordicDfuModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -39,7 +40,17 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
         }
         starter.setUnsafeExperimentalButtonlessServiceInSecureDfuEnabled(true);
         starter.setZip(filePath);
-        final DfuServiceController controller = starter.start(this.reactContext, DfuService.class);
+        controller = starter.start(this.reactContext, DfuService.class);
+    }
+
+    @ReactMethod
+    public void abortDFU(Promise promise) {
+        if (controller != null) {
+            controller.abort();
+            promise.resolve(new Boolean(controller.isAborted()));
+        } else {
+            mPromise.reject("10", "Controller not set, use startDFU first");
+        }
     }
 
     @Override
