@@ -2,9 +2,9 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 @import iOSDFULibrary;
 
-static CBCentralManager * (^getCentralManager)();
-static void (^onDFUComplete)();
-static void (^onDFUError)();
+static CBCentralManager * (^getCentralManager)(void);
+static void (^onDFUComplete)(void);
+static void (^onDFUError)(void);
 
 @implementation RNNordicDfu
 
@@ -218,9 +218,7 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
 
         DFUFirmware * firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url];
 
-        DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc]
-                                            initWithCentralManager:centralManager
-                                            target:peripheral]
+        DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc] initWithQueue:dispatch_get_main_queue() delegateQueue:dispatch_get_main_queue() progressQueue:dispatch_get_main_queue() loggerQueue:dispatch_get_main_queue()]
                                            withFirmware:firmware];
 
         initiator.logger = self;
@@ -239,12 +237,12 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
   getCentralManager = getter;
 }
 
-+ (void)setOnDFUComplete:(void (^)())onComplete
++ (void)setOnDFUComplete:(void (^)(void))onComplete
 {
   onDFUComplete = onComplete;
 }
 
-+ (void)setOnDFUError:(void (^)())onError
++ (void)setOnDFUError:(void (^)(void))onError
 {
   onDFUError = onError;
 }
