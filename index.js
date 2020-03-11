@@ -1,6 +1,6 @@
 import { NativeModules, NativeEventEmitter, Platform } from "react-native";
 const { RNNordicDfu } = NativeModules;
-const NordicDFU = { startDFU };
+const NordicDFU = { startDFU, abortDFU };
 
 function rejectPromise(message) {
   return new Promise((resolve, reject) => {
@@ -44,6 +44,15 @@ function startDFU({ deviceAddress, deviceName = null, filePath }) {
   }
   const upperDeviceAddress = deviceAddress.toUpperCase();
   return RNNordicDfu.startDFU(upperDeviceAddress, deviceName, filePath);
+}
+
+/**
+ * Abort the DFU process
+ *
+ * @returns {Promise} A promise that resolves with a boolean that indicates if the controller was aborted
+ */
+function abortDFU() {
+  return RNNordicDfu.abortDFU();
 }
 
 /**

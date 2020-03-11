@@ -12,6 +12,8 @@ declare module 'react-native-nordic-dfu' {
       deviceName?: string;
       filePath: string | null;
     }): Promise<string>;
+
+    static abortDFU(): Promise<boolean>;
   }
 
   export interface IDfuUpdate {
