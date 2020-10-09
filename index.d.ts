@@ -6,11 +6,13 @@ declare module 'react-native-nordic-dfu' {
     static startDFU({
       deviceAddress,
       deviceName,
-      filePath
+      filePath,
+      alternativeAdvertisingNameEnabled
     }: {
       deviceAddress: string;
       deviceName?: string;
       filePath: string | null;
+      alternativeAdvertisingNameEnabled?: boolean;
     }): Promise<string>;
 
     static abortDFU(): Promise<boolean>;
