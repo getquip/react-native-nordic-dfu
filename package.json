@@ -18,13 +18,13 @@
   "author": "Pilloxa <recruitment@pilloxa.com>",
   "license": "MIT",
   "peerDependencies": {
-    "react-native": ">= 0.45.1"
+    "react-native": ">=0.63.3"
   },
   "devDependencies": {
-    "documentation": "^4.0.0-rc.1",
-    "husky": "^0.13.3",
-    "lint-staged": "^3.4.0",
-    "prettier": "^1.2.2"
+    "documentation": "^13.0.2",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2"
   },
   "lint-staged": {
     "*.js": [
