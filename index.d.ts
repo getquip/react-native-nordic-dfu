@@ -1,7 +1,7 @@
 
 declare module 'react-native-nordic-dfu' {
+  import { NativeEventEmitter } from 'react-native';
   import StrictEventEmitter from 'strict-event-emitter-types';
-  import {NativeEventEmitter} from 'react-native'
   export class NordicDFU {
     static startDFU({
       deviceAddress,
@@ -35,5 +35,5 @@ declare module 'react-native-nordic-dfu' {
 
   type DFUEventEmitter = StrictEventEmitter<NativeEventEmitter, Events>;
 
-  export class DFUEmitter extends NativeEventEmitter {}
+  export const DFUEmitter: DFUEventEmitter
 }
