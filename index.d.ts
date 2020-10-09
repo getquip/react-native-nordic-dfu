@@ -19,11 +19,12 @@ declare module 'react-native-nordic-dfu' {
   }
 
   export interface IDfuUpdate {
-    percent?: number;
-    currentPart?: number;
-    partsTotal?: number;
-    avgSpeed?: number;
-    speed?: number;
+    deviceAddress: string;
+    currentPart: number;
+    partsTotal: number;
+    percent: number;
+    speed: number;
+    avgSpeed: number;
   }
 
   export interface IStateUpdate {

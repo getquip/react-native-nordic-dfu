@@ -21,6 +21,7 @@
     "react-native": ">=0.63.3"
   },
   "devDependencies": {
+    "@types/react-native": "^0.63.25",
     "documentation": "^13.0.2",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
