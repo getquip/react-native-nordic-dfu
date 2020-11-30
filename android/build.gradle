@@ -34,10 +34,11 @@ android {
 repositories {
     mavenCentral()
     google()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'no.nordicsemi.android:dfu:1.11.0'
+    implementation 'com.github.DomiR:Android-DFU-Library:release-SNAPSHOT'
 }
 

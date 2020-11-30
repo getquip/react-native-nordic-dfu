@@ -3,9 +3,10 @@ package com.pilloxa.dfu;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 import com.facebook.react.bridge.*;
 import com.facebook.react.modules.core.RCTNativeAppEventEmitter;
@@ -31,7 +32,7 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
     }
 
     @ReactMethod
-    public void startDFU(String address, String name, String filePath, Promise promise) {
+    public void startDFU(String address, String name, String uri, Promise promise) {
         mPromise = promise;
         final DfuServiceInitiator starter = new DfuServiceInitiator(address)
                 .setKeepBond(false);
@@ -39,7 +40,7 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
             starter.setDeviceName(name);
         }
         starter.setUnsafeExperimentalButtonlessServiceInSecureDfuEnabled(true);
-        starter.setZip(filePath);
+        starter.setZip(Uri.parse(uri));
         controller = starter.start(this.reactContext, DfuService.class);
     }
 
