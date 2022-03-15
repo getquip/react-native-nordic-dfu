@@ -39,6 +39,7 @@ repositories {
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'com.github.DomiR:Android-DFU-Library:release-SNAPSHOT'
+    implementation 'no.nordicsemi.android:dfu:1.12.1-beta01'
+    // implementation 'com.github.DomiR:Android-DFU-Library:release-SNAPSHOT'
 }
 
