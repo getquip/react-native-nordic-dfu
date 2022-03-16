@@ -43,6 +43,6 @@ dependencies {
     // this is the same version as 1.12.1-beta01 but with android assets path support
     // https://jitpack.io/com/github/domir/Android-DFU-Library/release-SNAPSHOT/build.log
     // implementation 'com.github.DomiR:Android-DFU-Library:1.12.1-beta02'
-    implementation 'com.github.DomiR:Android-DFU-Library:release-SNAPSHOT'
+    implementation 'com.github.DomiR:Android-DFU-Library:1.12.1-beta03'
 }
 
