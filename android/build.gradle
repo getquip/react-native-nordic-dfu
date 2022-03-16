@@ -41,6 +41,6 @@ dependencies {
     implementation 'com.facebook.react:react-native:+'
     // implementation 'no.nordicsemi.android:dfu:1.12.1-beta01'
     // this is the same version as 1.12.1-beta01 but with android assets path support
-    implementation 'com.github.DomiR:Android-DFU-Library:e4d88117f8f6619d133a5a436ef62f520a681429'
+    implementation 'com.github.DomiR:Android-DFU-Library:1.12.1-beta02'
 }
 
