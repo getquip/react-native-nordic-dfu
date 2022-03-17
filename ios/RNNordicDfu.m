@@ -226,6 +226,7 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
         initiator.delegate = self;
         initiator.progressDelegate = self;
         initiator.alternativeAdvertisingNameEnabled = alternativeAdvertisingNameEnabled;
+        initiator.connectionTimeout = 20.0;
 
         self.controller = [initiator startWithTarget:peripheral];
         [NSThread sleepForTimeInterval: 1]; //Work around for being stuck in iOS 13
