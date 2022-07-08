@@ -6,9 +6,10 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import androidx.annotation.Nullable;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import com.facebook.react.bridge.*;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.modules.core.RCTNativeAppEventEmitter;
 import no.nordicsemi.android.dfu.*;
 
@@ -32,13 +33,14 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
     }
 
     @ReactMethod
-    public void startDFU(String address, String name, String uri, Promise promise) {
+    public void startDFU(String address, String name, String uri, ReadableMap options, Promise promise) {
         mPromise = promise;
         final DfuServiceInitiator starter = new DfuServiceInitiator(address)
                 .setKeepBond(false);
         if (name != null) {
             starter.setDeviceName(name);
         }
+        starter.setPacketsReceiptNotificationsValue(1);
         starter.setUnsafeExperimentalButtonlessServiceInSecureDfuEnabled(true);
         starter.setZip(Uri.parse(uri));
         controller = starter.start(this.reactContext, DfuService.class);

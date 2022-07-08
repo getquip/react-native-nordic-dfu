@@ -3,7 +3,6 @@ package com.pilloxa.dfu;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.bridge.ReactContext;

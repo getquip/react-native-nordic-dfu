@@ -208,6 +208,10 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
       NSUUID * uuid = [[NSUUID alloc] initWithUUIDString:deviceAddress];
       [NSThread sleepForTimeInterval: 1]; //Work around for not finding the peripheral in iOS 13
 
+      // Change for iOS 13
+      [NSThread sleepForTimeInterval: 1]; //Work around for not finding the peripheral in iOS 13
+      // End change for iOS 13
+
       NSArray<CBPeripheral *> * peripherals = [centralManager retrievePeripheralsWithIdentifiers:@[uuid]];
 
       if ([peripherals count] != 1) {
@@ -228,8 +232,12 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
         initiator.alternativeAdvertisingNameEnabled = alternativeAdvertisingNameEnabled;
         initiator.connectionTimeout = 20.0;
 
+        // Change for iOS 13
+        initiator.packetReceiptNotificationParameter = 1; //Rate limit the DFU using PRN.
+        [NSThread sleepForTimeInterval: 2]; //Work around for being stuck in iOS 13
+        // End change for iOS 13
+
         self.controller = [initiator startWithTarget:peripheral];
-        [NSThread sleepForTimeInterval: 1]; //Work around for being stuck in iOS 13
       }
     }
   }

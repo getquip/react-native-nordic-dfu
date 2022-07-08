@@ -1,6 +1,6 @@
 {
   "name": "react-native-nordic-dfu",
-  "version": "3.2.7",
+  "version": "3.3.0",
   "description": "Nordic Device Firmware Update for React Native",
   "main": "index.js",
   "url": "https://github.com/Pilloxa/react-native-nordic-dfu",
@@ -22,10 +22,10 @@
   },
   "devDependencies": {
     "@types/react-native": "^0.63.25",
-    "documentation": "^13.0.2",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.4.0",
-    "prettier": "^2.1.2"
+    "documentation": "^13.2.5",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.3.2"
   },
   "lint-staged": {
     "*.js": [
