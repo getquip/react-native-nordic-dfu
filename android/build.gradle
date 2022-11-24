@@ -39,9 +39,6 @@ repositories {
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-       // implementation 'no.nordicsemi.android:dfu:2.0.3'
-    // this is the same version as 2.0.3 but with android assets path support
-    // https://jitpack.io/com/github/domir/Android-DFU-Library/release-SNAPSHOT/build.log
-    implementation 'com.github.DomiR:Android-DFU-Library:2.0.3-0'
+    implementation 'no.nordicsemi.android:dfu:2.2.2'
 }
 
