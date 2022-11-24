@@ -6,8 +6,10 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
+
 import com.facebook.react.bridge.*;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.modules.core.RCTNativeAppEventEmitter;
