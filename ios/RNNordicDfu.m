@@ -222,14 +222,15 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
         NSURL * url = [NSURL URLWithString:filePath];
 
         DFUFirmware * firmware;
-        @try {
-          firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url];
-        } @catch (NSException *exception) {
-          reject(@"nil_firmware", @"Could not create dfu firmware file for provided url", nil);
-          return;
+        NSError * initError;
+        firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url error:&initError];
+
+        if (initError != nil) {
+            reject(@"nil_firmware", @"Could not create dfu firmware file for provided url", nil);
+            return;
         }
 
-        DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc] initWithQueue:dispatch_get_main_queue() delegateQueue:dispatch_get_main_queue() progressQueue:dispatch_get_main_queue() loggerQueue:dispatch_get_main_queue()]
+        DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc] initWithQueue:dispatch_get_main_queue() delegateQueue:dispatch_get_main_queue() progressQueue:dispatch_get_main_queue() loggerQueue:dispatch_get_main_queue() centralManagerOptions:nil]
                                            withFirmware:firmware];
 
         initiator.logger = self;
