@@ -23,6 +23,7 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
     public static final String LOG_TAG = name;
     private final ReactApplicationContext reactContext;
     private Promise mPromise = null;
+    private int listenerCount = 0;
     private DfuServiceController controller = null;
 
     public RNNordicDfuModule(ReactApplicationContext reactContext) {
@@ -78,11 +79,28 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
         sendEvent(dfuStateEvent, map);
     }
 
+    @ReactMethod
+    public void addListener(String eventName) {
+        if (listenerCount == 0) {
+            DfuServiceListenerHelper.registerProgressListener(this.reactContext, mDfuProgressListener);
+        }
+        listenerCount += 1;
+    }
+
+    @ReactMethod
+    public void removeListeners(Integer count) {
+        listenerCount -= count;
+        if (listenerCount == 0) {
+            DfuServiceListenerHelper.unregisterProgressListener(this.reactContext, mDfuProgressListener);
+        }
+    }
+
 
     @Override
     public void onHostResume() {
-        DfuServiceListenerHelper.registerProgressListener(this.reactContext, mDfuProgressListener);
-
+        if (listenerCount > 0) {
+            DfuServiceListenerHelper.registerProgressListener(this.reactContext, mDfuProgressListener);
+        }
     }
 
     @Override
@@ -91,8 +109,9 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
 
     @Override
     public void onHostDestroy() {
-        DfuServiceListenerHelper.unregisterProgressListener(this.reactContext, mDfuProgressListener);
-
+        if (listenerCount > 0) {
+            DfuServiceListenerHelper.unregisterProgressListener(this.reactContext, mDfuProgressListener);
+        }
     }
 
 
