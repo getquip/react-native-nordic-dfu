@@ -6,6 +6,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -36,16 +37,37 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
     }
 
     @ReactMethod
-    public void startDFU(String address, String name, String uri, ReadableMap options, Promise promise) {
+    public void startDFU(String address, String name, String uri, int packetReceiptNotificationParameter, ReadableMap options, Promise promise) {
         mPromise = promise;
         final DfuServiceInitiator starter = new DfuServiceInitiator(address)
                 .setKeepBond(false);
+
+        if (options.hasKey("retries")) {
+          int retries = options.getInt("retries");
+          starter.setNumberOfRetries(retries);
+        }
+
+        if (options.hasKey("maxMtu")) {
+          int mtu = options.getInt("maxMtu");
+          starter.setMtu(mtu);
+        }
         if (name != null) {
             starter.setDeviceName(name);
         }
-        starter.setPacketsReceiptNotificationsValue(1);
+          // mimic behavior of iOSDFULibrary when packetReceiptNotificationParameter is set to `0` - see: https://github.com/NordicSemiconductor/IOS-Pods-DFU-Library/blob/master/iOSDFULibrary/Classes/Implementation/DFUServiceInitiator.swift#L115
+        if (packetReceiptNotificationParameter > 0) {
+          starter.setPacketsReceiptNotificationsValue(packetReceiptNotificationParameter);
+        } else {
+          starter.setPacketsReceiptNotificationsValue(1);
+        }
         starter.setUnsafeExperimentalButtonlessServiceInSecureDfuEnabled(true);
-        starter.setZip(Uri.parse(uri));
+
+        if (uri.endsWith(".bin") || uri.endsWith(".hex")) {
+            starter.setBinOrHex(DfuBaseService.TYPE_APPLICATION, uri).setInitFile(null, null);
+        } else {
+            starter.setZip(Uri.parse(uri));
+        }
+
         controller = starter.start(this.reactContext, DfuService.class);
     }
 
@@ -63,7 +85,6 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
     public String getName() {
         return name;
     }
-
 
     private void sendEvent(String eventName, @Nullable WritableMap params) {
         getReactApplicationContext()

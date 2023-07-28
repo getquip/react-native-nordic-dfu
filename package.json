@@ -18,7 +18,8 @@
   "author": "Pilloxa <recruitment@pilloxa.com>",
   "license": "MIT",
   "peerDependencies": {
-    "react-native": ">=0.63.3"
+    "react": "*",
+    "react-native": "*"
   },
   "devDependencies": {
     "@types/react-native": "^0.63.25",

@@ -1,4 +1,3 @@
-
 declare module 'react-native-nordic-dfu' {
   import { NativeEventEmitter } from 'react-native';
   import StrictEventEmitter from 'strict-event-emitter-types';
@@ -8,13 +7,15 @@ declare module 'react-native-nordic-dfu' {
       deviceName,
       filePath,
       alternativeAdvertisingNameEnabled,
+      packetReceiptNotificationParameter,
       retries,
-      maxMtu
+      maxMtu,
     }: {
       deviceAddress: string;
       deviceName?: string;
       filePath: string | null;
       alternativeAdvertisingNameEnabled?: boolean;
+      packetReceiptNotificationParameter?: number;
       retries?: number;
       maxMtu?: number;
     }): Promise<string>;
