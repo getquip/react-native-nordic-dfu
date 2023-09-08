@@ -1,5 +1,5 @@
 {
-  "name": "react-native-nordic-dfu",
+  "name": "@domir/react-native-nordic-dfu",
   "version": "3.4.0",
   "description": "Nordic Device Firmware Update for React Native",
   "main": "index.js",
