@@ -7,8 +7,6 @@ nrf52 chip from Nordic Semiconductor. It is tested on both iOS (17) and Android 
 
 For more info about the DFU process, see: [Resources](#resources)
 
-> This is a fork from the main library!
-
 Please keep in mind the our availability to maintain this fork is limited and is based on our project needs.
 
 ## Installation
