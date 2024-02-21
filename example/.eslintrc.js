@@ -1,4 +1,16 @@
 module.exports = {
+  extends: ['@react-native'],
+  ignorePatterns: [],
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx', '*.d.ts'],
+      parserOptions: {
+        project: './tsconfig.json',
+      },
+    },
+  ],
   root: true,
-  extends: '@react-native',
-};
+  rules: {
+    semi: [2, 'never'],
+  },
+}
