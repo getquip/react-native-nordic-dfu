@@ -6,22 +6,22 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:7.2.1")
+        classpath("com.android.tools.build:gradle:7.4.2")
     }
 }
 
 apply plugin: 'com.android.library'
 
-def DEFAULT_COMPILE_SDK_VERSION = 31
-def DEFAULT_BUILD_TOOLS_VERSION = '31.0.0'
-def DEFAULT_TARGET_SDK_VERSION = 31
+def DEFAULT_COMPILE_SDK_VERSION = 34
+def DEFAULT_BUILD_TOOLS_VERSION = '34.0.0'
+def DEFAULT_TARGET_SDK_VERSION = 34
 
 android {
     compileSdkVersion project.hasProperty('compileSdkVersion') ? project.compileSdkVersion : DEFAULT_COMPILE_SDK_VERSION
     buildToolsVersion project.hasProperty('buildToolsVersion') ? project.buildToolsVersion : DEFAULT_BUILD_TOOLS_VERSION
 
     defaultConfig {
-        minSdkVersion 18
+        minSdkVersion 30
         targetSdkVersion project.hasProperty('targetSdkVersion') ? project.targetSdkVersion : DEFAULT_TARGET_SDK_VERSION
         versionCode 1
         versionName "1.0"

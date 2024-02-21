@@ -1,45 +1,37 @@
 {
-  "name": "@domir/react-native-nordic-dfu",
-  "version": "3.4.3",
+  "author": "getquip",
+  "dependencies": {
+    "strict-event-emitter-types": "^2.0.0"
+  },
   "description": "Nordic Device Firmware Update for React Native",
-  "main": "index.js",
-  "url": "https://github.com/Pilloxa/react-native-nordic-dfu",
-  "repository": "Pilloxa/react-native-nordic-dfu",
-  "scripts": {
-    "test": "echo \"No test specified\"",
-    "precommit": "lint-staged",
-    "document": "documentation readme --readme-file README.md -s \"API\" -g"
+  "devDependencies": {
+    "@types/react-native": "~0.73.0",
+    "lint-staged": "~15.2.2",
+    "prettier": "~3.2.5"
   },
   "keywords": [
     "react-native",
     "dfu",
     "nordic"
   ],
-  "author": "Pilloxa <recruitment@pilloxa.com>",
   "license": "MIT",
-  "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
-  },
-  "devDependencies": {
-    "@types/react-native": "^0.63.25",
-    "documentation": "^13.2.5",
-    "husky": "^7.0.2",
-    "lint-staged": "^11.1.2",
-    "prettier": "^2.3.2"
-  },
   "lint-staged": {
     "*.js": [
-      "prettier --write",
-      "git add"
-    ],
-    "index.js": [
-      "npm run document",
-      "git add README.md"
+      "prettier --write"
     ]
   },
+  "main": "index.js",
+  "name": "@getquip/react-native-nordic-dfu",
+  "peerDependencies": {
+    "react": "~18.0",
+    "react-native": "~0.73"
+  },
+  "repository": "getquip/react-native-nordic-dfu",
+  "scripts": {
+    "precommit": "lint-staged",
+    "test": "echo \"No test specified\""
+  },
   "types": "./index.d.ts",
-  "dependencies": {
-    "strict-event-emitter-types": "^2.0.0"
-  }
+  "url": "https://github.com/getquip/react-native-nordic-dfu",
+  "version": "4.0.0"
 }
