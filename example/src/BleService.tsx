@@ -26,9 +26,8 @@ const scanAndConnectToDevice = () =>
         console.log('Scan -->', peripheral);
         if (peripheral.name === name) {
           BleManager.stopScan();
-          const deviceConnected: Peripheral = await connectToDeviceId(
-            peripheral,
-          );
+          const deviceConnected: Peripheral =
+            await connectToDeviceId(peripheral);
           resolve(deviceConnected);
         }
       },

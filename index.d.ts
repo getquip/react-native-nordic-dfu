@@ -1,5 +1,5 @@
 declare module '@getquip/react-native-nordic-dfu' {
-  import { NativeEventEmitter } from 'react-native';
+  import {NativeEventEmitter} from 'react-native';
   import StrictEventEmitter from 'strict-event-emitter-types';
   export class NordicDFU {
     static startDFU({
@@ -33,7 +33,16 @@ declare module '@getquip/react-native-nordic-dfu' {
   }
 
   export interface IStateUpdate {
-    state?: 'DFU_ABORTED' | 'DFU_PROCESS_STARTING' | 'DFU_COMPLETED' | 'DFU_STATE_UPLOADING' | 'CONNECTING' | 'FIRMWARE_VALIDATING' | 'DEVICE_DISCONNECTING' | 'ENABLING_DFU_MODE' | 'UNKNOWN_STATE'
+    state?:
+      | 'DFU_ABORTED'
+      | 'DFU_PROCESS_STARTING'
+      | 'DFU_COMPLETED'
+      | 'DFU_STATE_UPLOADING'
+      | 'CONNECTING'
+      | 'FIRMWARE_VALIDATING'
+      | 'DEVICE_DISCONNECTING'
+      | 'ENABLING_DFU_MODE'
+      | 'UNKNOWN_STATE';
   }
 
   interface Events {
@@ -43,5 +52,5 @@ declare module '@getquip/react-native-nordic-dfu' {
 
   type DFUEventEmitter = StrictEventEmitter<NativeEventEmitter, Events>;
 
-  export const DFUEmitter: DFUEventEmitter
+  export const DFUEmitter: DFUEventEmitter;
 }

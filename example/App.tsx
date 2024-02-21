@@ -85,7 +85,7 @@ const App: React.FC = () => {
     await RNFS.copyFile(downloadPath, destination);
     response?.flush();
 
-    DFUEmitter.addListener('DFUProgress', ({ percent }: { percent: number }) => {
+    DFUEmitter.addListener('DFUProgress', ({percent}: {percent: number}) => {
       percent && setPercentage(percent);
     });
     return NordicDFU.startDFU({

@@ -1,10 +1,10 @@
-import { NativeModules, NativeEventEmitter, Platform } from "react-native";
-const { RNNordicDfu } = NativeModules;
-const NordicDFU = { startDFU, abortDFU };
+import {NativeModules, NativeEventEmitter, Platform} from 'react-native';
+const {RNNordicDfu} = NativeModules;
+const NordicDFU = {startDFU, abortDFU};
 
 function rejectPromise(message) {
   return new Promise((resolve, reject) => {
-    reject(new Error("NordicDFU.startDFU: " + message));
+    reject(new Error('NordicDFU.startDFU: ' + message));
   });
 }
 
@@ -49,21 +49,21 @@ function startDFU({
   maxMtu = 23, // Android only
 }) {
   if (deviceAddress == undefined) {
-    return rejectPromise("No deviceAddress defined");
+    return rejectPromise('No deviceAddress defined');
   }
   if (filePath == undefined) {
-    return rejectPromise("No filePath defined");
+    return rejectPromise('No filePath defined');
   }
   const upperDeviceAddress = deviceAddress.toUpperCase();
-  if (Platform.OS === "ios") {
+  if (Platform.OS === 'ios') {
     return RNNordicDfu.startDFU(
       upperDeviceAddress,
       deviceName,
       filePath,
       packetReceiptNotificationParameter,
-      alternativeAdvertisingNameEnabled
+      alternativeAdvertisingNameEnabled,
     );
-  } else if (Platform.OS === "android") {
+  } else if (Platform.OS === 'android') {
     return RNNordicDfu.startDFU(
       upperDeviceAddress,
       deviceName,
@@ -72,10 +72,10 @@ function startDFU({
       {
         retries,
         maxMtu,
-      }
+      },
     );
   } else {
-    throw new Error("Platform not supported (not android or ios)");
+    throw new Error('Platform not supported (not android or ios)');
   }
 }
 
@@ -106,4 +106,4 @@ function abortDFU() {
  */
 const DFUEmitter = new NativeEventEmitter(RNNordicDfu);
 
-export { NordicDFU, DFUEmitter };
+export {NordicDFU, DFUEmitter};
