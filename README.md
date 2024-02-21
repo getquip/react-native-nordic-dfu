@@ -84,7 +84,7 @@ Android should not any special setup steps past install. Please see the [Android
 
 ## Example Project
 
-This example assumes you already have the basics installed to run cocapods, gradle, java, etc.
+This example assumes you already have the basics installed to run cocapods, gradle, java, etc. Note that you must setup the xcode project with the correct Signing & Capabilities.
 
 1. `cd example`
 2. `yarn setup`
