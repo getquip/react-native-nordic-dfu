@@ -1,3 +1,4 @@
-example/**/build/**/*
-example/**/build/**/*
+example/**/build/
+example/**/Pods/
 example/vendor
+**/node_modules/
