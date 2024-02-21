@@ -5,7 +5,7 @@ require Pod::Executable.execute_command('node', ['-p',
     {paths: [process.argv[1]]},
   )', __dir__]).strip
 
-platform :ios, min_ios_version_supported
+platform :ios, '16.0'
 prepare_react_native_project!
 
 # If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
@@ -25,6 +25,18 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
+static_frameworks = ['iOSDFULibrary']
+pre_install do |installer|
+  installer.pod_targets.each do |pod|
+    if static_frameworks.include?(pod.name)
+      puts "Overriding the static_frameworks? method for #{pod.name}"
+      def pod.build_type;
+        Pod::BuildType.new(:linkage => :static, :packaging => :framework)
+      end
+    end
+  end
+end
+
 target 'example' do
   config = use_native_modules!
 
@@ -38,6 +50,8 @@ target 'example' do
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
+
+  pod "react-native-nordic-dfu", path: "../node_modules/@getquip/react-native-nordic-dfu"
 
   target 'exampleTests' do
     inherit! :complete

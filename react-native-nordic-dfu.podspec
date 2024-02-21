@@ -8,11 +8,11 @@ Pod::Spec.new do |s|
   s.summary      = package["description"]
 
   s.authors      = { package["author"] => "" }
-  s.homepage     = "https://github.com/getquip/react-native-nordic-dfu"
-  s.license      = "MIT"
-  s.platform     = :ios, "17.0"
+  s.homepage     = package["url"]
+  s.license      = package["license"]
+  s.platform     = :ios, "16.0"
 
-  s.source       = { :git => "https://github.com/getquip/react-native-nordic-dfu.git" }
+  s.source       = { :git => package["url"] + ".git" }
   s.source_files  = "ios/**/*.{h,m}"
 
   s.dependency "React-Core"

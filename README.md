@@ -2,10 +2,9 @@
 
 > ⚠️ Warning! This library is a fork from a discontinued library. The original project was at [Pilloxa/react-native-nordic-dfu](https://github.com/Pilloxa/react-native-nordic-dfu). Our fork is built off a more up-to-date fork from [DomiR/react-native-nordic-dfu](https://github.com/DomiR/react-native-nordic-dfu) that works with Android 14. The quip fork should also now work with iOS 17.
 
-This library allows you to do a Device Firmware Update (DFU) of your nrf51 or
-nrf52 chip from Nordic Semiconductor. It is tested on both iOS (17) and Android (14).
+This library allows you to perform a Device Firmware Update (DFU) of your nrf51 or nrf52 chip from Nordic Semiconductor. It is tested on both iOS (17) and Android (14).
 
-For more info about the DFU process, see: [Resources](#resources)
+For more info about the DFU process, see: [Resources](#resources).
 
 Please keep in mind the our availability to maintain this fork is limited and is based on our project needs.
 
@@ -27,7 +26,7 @@ yarn add https://github.com/getquip/react-native-nordic-dfu
 
 ### iOS
 
-The iOS project is written in Objective-C. You'll need to add the follow to `Podfile` and `AppDelegate.mm`. Please see the [iOS example project](example/ios).
+The iOS project is written in Objective-C. You'll need to add the following to `Podfile` and `AppDelegate.mm`. Please see the [iOS example project](example/ios).
 
 `Podfile`:
 
@@ -80,7 +79,7 @@ end
 
 ### Android
 
-Android should not any special setup steps past install. Please see the [Android example project](example/android).
+Android does not require any special setup. Please see the [Android example project](example/android).
 
 ## Example Project
 
