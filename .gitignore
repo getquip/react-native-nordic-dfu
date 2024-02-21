@@ -47,5 +47,3 @@ buck-out/
 # CocoaPods
 Pods/
 
-# Ignore changes to project.pbxproj
-example/ios/example.xcodeproj/project.pbxproj
