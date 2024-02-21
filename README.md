@@ -48,7 +48,7 @@ end
 
 target "YourApp" do
   # ...
-  pod "react-native-nordic-dfu", path: "../node_modules/react-native-nordic-dfu"
+  pod "react-native-nordic-dfu", path: "../node_modules/@getquip/react-native-nordic-dfu"
   # ...
 end
 ```
@@ -85,6 +85,8 @@ end
 Android should not any special setup steps past install. Please see the [Android example project](example/android).
 
 ## Example Project
+
+This example assumes you already have the basics installed to run cocapods, gradle, java, etc.
 
 1. `cd example`
 2. `yarn setup`

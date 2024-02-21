@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {BleManagerService} from './src/BleService';
 import {Peripheral} from 'react-native-ble-manager';
-import {NordicDFU, DFUEmitter} from 'react-native-nordic-dfu';
+import {NordicDFU, DFUEmitter} from '@getquip/react-native-nordic-dfu';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import RNFS from 'react-native-fs';
 
@@ -85,7 +85,7 @@ const App: React.FC = () => {
     await RNFS.copyFile(downloadPath, destination);
     response?.flush();
 
-    DFUEmitter.addListener('DFUProgress', ({percent}) => {
+    DFUEmitter.addListener('DFUProgress', ({ percent }: { percent: number }) => {
       percent && setPercentage(percent);
     });
     return NordicDFU.startDFU({
@@ -96,7 +96,7 @@ const App: React.FC = () => {
       .then(() => {
         console.log('Done');
       })
-      .catch(err => {
+      .catch((err: any) => {
         console.log('DFU', err);
         DFUEmitter.removeAllListeners('DFUProgress');
         return Promise.reject(err);

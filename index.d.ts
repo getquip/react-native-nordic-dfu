@@ -1,4 +1,4 @@
-declare module '@domir/react-native-nordic-dfu' {
+declare module '@getquip/react-native-nordic-dfu' {
   import { NativeEventEmitter } from 'react-native';
   import StrictEventEmitter from 'strict-event-emitter-types';
   export class NordicDFU {

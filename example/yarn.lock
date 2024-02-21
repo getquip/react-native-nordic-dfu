@@ -1560,6 +1560,11 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.56.0.tgz#ef20350fec605a7f7035a01764731b2de0f3782b"
   integrity sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==
 
+"@getquip/react-native-nordic-dfu@../":
+  version "4.0.0"
+  dependencies:
+    strict-event-emitter-types "^2.0.0"
+
 "@hapi/hoek@^9.0.0":
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.3.0.tgz#8368869dcb735be2e7f5cb7647de78e167a251fb"
@@ -6009,11 +6014,6 @@ react-native-fs@~2.20.0:
   dependencies:
     base-64 "^0.1.0"
     utf8 "^3.0.0"
-
-react-native-nordic-dfu@../../react-native-nordic-dfu:
-  version "4.0.0"
-  dependencies:
-    strict-event-emitter-types "^2.0.0"
 
 react-native@~0.73.4:
   version "0.73.4"

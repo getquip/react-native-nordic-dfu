@@ -5,10 +5,10 @@ require Pod::Executable.execute_command('node', ['-p',
     {paths: [process.argv[1]]},
   )', __dir__]).strip
 
-platform :ios, min_ios_version_supported
+platform :ios, '17.0'
 prepare_react_native_project!
 
-static_frameworks = ['iOSDFULibrary']  
+static_frameworks = ['iOSDFULibrary']
 pre_install do |installer|
   installer.pod_targets.each do |pod|
     if static_frameworks.include?(pod.name)
@@ -20,17 +20,6 @@ pre_install do |installer|
   end
 end
 
-# If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
-# because `react-native-flipper` depends on (FlipperKit,...) that will be excluded
-#
-# To fix this you can also exclude `react-native-flipper` using a `react-native.config.js`
-# ```js
-# module.exports = {
-#   dependencies: {
-#     ...(process.env.NO_FLIPPER ? { 'react-native-flipper': { platforms: { ios: null } } } : {}),
-# ```
-flipper_config = ENV['NO_FLIPPER'] == "1" ? FlipperConfiguration.disabled : FlipperConfiguration.enabled
-
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
@@ -40,7 +29,7 @@ end
 target 'newExample' do
   config = use_native_modules!
 
-  pod "react-native-nordic-dfu", path: "../node_modules/react-native-nordic-dfu"
+  pod "react-native-nordic-dfu", path: "../node_modules/@getquip/react-native-nordic-dfu"
 
   # Flags change depending on the env values.
   flags = get_default_flags()
@@ -50,11 +39,6 @@ target 'newExample' do
     # Hermes is now enabled by default. Disable by setting this flag to false.
     :hermes_enabled => flags[:hermes_enabled],
     :fabric_enabled => flags[:fabric_enabled],
-    # Enables Flipper.
-    #
-    # Note that if you have use_frameworks! enabled, Flipper will not work and
-    # you should disable the next line.
-    :flipper_configuration => flipper_config,
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
@@ -71,6 +55,7 @@ target 'newExample' do
       config[:reactNativePath],
       :mac_catalyst_enabled => false
     )
-    __apply_Xcode_12_5_M1_post_install_workaround(installer)
+    # removed in https://github.com/facebook/react-native/commit/0ab8b40fd64ad86b4598293faa0b77e71fc9d349
+    # __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end

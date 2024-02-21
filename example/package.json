@@ -5,7 +5,7 @@
     "react-native-ble-manager": "~11.3.2",
     "react-native-blob-util": "~0.19.6",
     "react-native-fs": "~2.20.0",
-    "react-native-nordic-dfu": "../../react-native-nordic-dfu"
+    "@getquip/react-native-nordic-dfu": "../"
   },
   "devDependencies": {
     "@babel/core": "~7.23.9",
@@ -34,7 +34,7 @@
     "lint": "eslint .",
     "setup": "rm -rf node_modules && yarn install && cd ios && rm -rf Podfile.lock && pod install && cd .. && cd android && ./gradlew clean && cd ..",
     "start": "react-native start",
-    "test": "jest"
+    "test": "echo \"Error: no test specified yet!\" && exit 1"
   },
   "version": "1.0.0"
 }
