@@ -14,16 +14,16 @@
 
 
   [RNNordicDfu setCentralManagerGetter:^() {
-          return [[CBCentralManager alloc] initWithDelegate:nil queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)];
-      }];
+    return [[CBCentralManager alloc] initWithDelegate:nil queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)];
+  }];
 
-        // Reset manager delegate since the Nordic DFU lib "steals" control over it
-            [RNNordicDfu setOnDFUComplete:^() {
-                NSLog(@"onDFUComplete");
-            }];
-            [RNNordicDfu setOnDFUError:^() {
-                NSLog(@"onDFUError");
-            }];
+  // Reset manager delegate since the Nordic DFU lib "steals" control over it
+  [RNNordicDfu setOnDFUComplete:^() {
+    NSLog(@"onDFUComplete");
+  }];
+  [RNNordicDfu setOnDFUError:^() {
+    NSLog(@"onDFUError");
+  }];
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
