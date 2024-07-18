@@ -7,9 +7,9 @@ This example runs on [Expo](https://expo.dev/). You can't use Expo Go, iOS simul
 1. `nvm install`
 1. `yarn install`
 1. `yarn expo:prebuild`
-1. `yarn dev` will start Expo. Please review the [expo-cli](https://docs.expo.dev/more/expo-cli/) docs for more commands.
+1. `yarn dev:ios` or `yarn dev:android` will start Expo. Please review the [expo-cli](https://docs.expo.dev/more/expo-cli/) docs for more commands.
 
-Once the project is running...
+Expo may take a while to start if it's the first time. Have patience. Once the project is running...
 
 1. Press `Scan for Devices` button
 1. Select a Bluetooth device by pressing it
