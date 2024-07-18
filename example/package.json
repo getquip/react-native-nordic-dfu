@@ -16,7 +16,7 @@
     "react-native": "0.73.6",
     "react-native-ble-manager": "^11.2.1",
     "react-native-paper": "^5.12.3",
-    "react-native-reanimated": "^3.11.0",
+    "react-native-reanimated": "~3.6.2",
     "react-native-safe-area-context": "4.8.2",
     "react-native-screens": "~3.29.0",
     "react-native-web": "~0.19.6"
@@ -55,13 +55,15 @@
   "scripts": {
     "check:lint": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 0",
     "check:prettier": "prettier --config .prettierrc --check '**/*.{ts,tsx,js,jsx}'",
-    "dev": "expo start",
+    "dev": "expo run",
     "expo:doctor": "npx expo-doctor",
     "expo:prebuild": "expo prebuild --clean",
     "fix:lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "fix:prettier": "prettier --config .prettierrc --write '**/*.{ts,tsx,js,jsx}'",
     "plugins:compile": "ls -rtd plugins/*/*/*.ts | tail | xargs tsc --skipLibCheck",
-    "test": "echo \"Error: no test specified yet!\" && exit 1"
+    "test": "echo \"Error: no test specified yet!\" && exit 1",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "version": "1.0.0"
 }
