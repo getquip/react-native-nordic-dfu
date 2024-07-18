@@ -1,4 +1,9 @@
 {
+  "author": {
+    "name": "quip",
+    "url": "https://getquip.com/"
+  },
+  "bugs": "https://github.com/getquip/react-native-nordic-dfu/issues",
   "dependencies": {
     "@getquip/react-native-nordic-dfu": "../",
     "@react-navigation/native": "^6.0.2",
@@ -11,6 +16,8 @@
     "expo-module-scripts": "^3.4.1",
     "expo-router": "~3.4.10",
     "expo-status-bar": "~1.11.1",
+    "expo-system-ui": "~2.9.4",
+    "expo-task-manager": "~11.7.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.73.6",
@@ -21,6 +28,7 @@
     "react-native-screens": "~3.29.0",
     "react-native-web": "~0.19.6"
   },
+  "description": "Example project for @getquip/react-native-nordic-dfu that runs on Expo",
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@expo/config-plugins": "^7.8.4",
@@ -49,9 +57,12 @@
     "node": "~20.15",
     "yarn": "1.x"
   },
+  "homepage": "https://github.com/getquip/react-native-nordic-dfu/blob/main/example/README.md",
+  "license": "GPL-3.0-or-later",
   "main": "expo-router/entry",
   "name": "example",
   "private": true,
+  "repository": "https://github.com/getquip/react-native-nordic-dfu/blob/main/example",
   "scripts": {
     "check:lint": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 0",
     "check:prettier": "prettier --config .prettierrc --check '**/*.{ts,tsx,js,jsx}'",

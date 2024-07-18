@@ -24,7 +24,13 @@
       "buildNumber": "1.0.0",
       "bundleIdentifier": "com.quip.dfu.example",
       "infoPlist": {
-        "NSBluetoothAlwaysUsageDescription": "Uses Bluetooth to connect to your device."
+        "NSBluetoothAlwaysUsageDescription": "Uses Bluetooth to connect to your device.",
+        "UIBackgroundModes": [
+          "bluetooth-peripheral",
+          "fetch",
+          "bluetooth-central"
+        ],
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "name": "example",
@@ -51,6 +57,9 @@
     "scheme": "example",
     "slug": "example",
     "userInterfaceStyle": "light",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "web": {
+      "bundler": "metro"
+    }
   }
 }

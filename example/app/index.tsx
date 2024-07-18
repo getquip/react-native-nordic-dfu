@@ -133,7 +133,7 @@ export default function DFUScreen() {
 
   const handleUpdateFirmware = async (peripheral: Peripheral, firmwareUrl: string) => {
     // NordicDFU.startDFU takes a while to start, so we need to hide the button
-    updateProgress({ state: 'CONNECTING' })
+    updateProgress({ state: 'Booting...' })
     const [{ localUri }] = await Asset.loadAsync(firmwareUrl).catch((error) => {
       console.error(error)
       updateProgress({ state: 'DFU_FAILED', percent: undefined })
@@ -185,7 +185,7 @@ export default function DFUScreen() {
           setFirmwareProgress({ state, percent: 0, isError: false, isComplete: false })
       }
     else {
-      setFirmwareProgress({ state: 'Loading...', percent: percent ?? 0, isError: false, isComplete: false })
+      setFirmwareProgress({ state: '...', percent: percent ?? 0, isError: false, isComplete: false })
     }
   }
 
