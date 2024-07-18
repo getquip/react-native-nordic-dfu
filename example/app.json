@@ -1,4 +1,57 @@
 {
-  "name": "example",
-  "displayName": "example"
+  "expo": {
+    "android": {
+      "package": "com.quip.dfu.example",
+      "permissions": [
+        "android.permission.BLUETOOTH_ADMIN",
+        "android.permission.BLUETOOTH_CONNECT",
+        "android.permission.BLUETOOTH_ADVERTISE"
+      ],
+      "versionCode": 1
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      }
+    },
+    "ios": {
+      "buildNumber": "1.0.0",
+      "bundleIdentifier": "com.quip.dfu.example",
+      "infoPlist": {
+        "NSBluetoothAlwaysUsageDescription": "Uses Bluetooth to connect to your device."
+      }
+    },
+    "name": "example",
+    "orientation": "portrait",
+    "owner": "quip-nyc",
+    "plugins": [
+      "./expo.plugins",
+      "expo-router",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 33
+          },
+          "ios": {
+            "deploymentTarget": "16.0"
+          }
+        }
+      ],
+      "expo-asset"
+    ],
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "scheme": "example",
+    "slug": "example",
+    "userInterfaceStyle": "light",
+    "version": "1.0.0"
+  }
 }
