@@ -1,13 +1,5 @@
-
 import React from 'react'
-import {
-  View,
-  Platform,
-  NativeModules,
-  NativeEventEmitter,
-  KeyboardAvoidingView,
-  ScrollView,
-} from 'react-native'
+import { View, Platform, NativeModules, NativeEventEmitter, KeyboardAvoidingView, ScrollView } from 'react-native'
 
 const BleManagerModule = NativeModules.BleManager
 const bleManagerEmitter = new NativeEventEmitter(BleManagerModule)
@@ -27,8 +19,7 @@ export default function DFUScreen() {
             padding: 20,
             marginBottom: 200,
           }}
-        >
-        </View>
+        ></View>
       </ScrollView>
     </KeyboardAvoidingView>
   )

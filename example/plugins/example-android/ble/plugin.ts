@@ -1,9 +1,7 @@
 import { AndroidConfig, ConfigPlugin, withAndroidManifest } from 'expo/config-plugins'
 
 const resetPermissions = (androidManifest: AndroidConfig.Manifest.AndroidManifest) => {
-  AndroidConfig.Permissions.removePermissions(androidManifest, [
-    'android.permission.BLUETOOTH_SCAN',
-  ])
+  AndroidConfig.Permissions.removePermissions(androidManifest, ['android.permission.BLUETOOTH_SCAN'])
 
   if (!Array.isArray(androidManifest.manifest['uses-permission'])) {
     androidManifest.manifest['uses-permission'] = []
@@ -15,15 +13,13 @@ const resetPermissions = (androidManifest: AndroidConfig.Manifest.AndroidManifes
 }
 
 const updatePermissions = (androidManifest: AndroidConfig.Manifest.AndroidManifest) => {
-  androidManifest.manifest['uses-permission']?.push(
-    {
-      $: {
-        'android:name': 'android.permission.BLUETOOTH_SCAN',
-        // @ts-ignore: type definition is incorrect
-        'android:usesPermissionFlags': 'neverForLocation',
-      },
-    }
-  )
+  androidManifest.manifest['uses-permission']?.push({
+    $: {
+      'android:name': 'android.permission.BLUETOOTH_SCAN',
+      // @ts-ignore: type definition is incorrect
+      'android:usesPermissionFlags': 'neverForLocation',
+    },
+  })
   androidManifest.manifest['uses-feature']?.push({
     $: {
       'android:name': 'android.hardware.bluetooth_le',
