@@ -4,6 +4,7 @@ import '../global.css'
 import React from 'react'
 import { PaperProvider } from 'react-native-paper'
 import BleManager from 'react-native-ble-manager'
+import DFUScreen from '@/app/index'
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -22,6 +23,8 @@ if (typeof window !== 'undefined') {
 
 export default function RootLayout() {
   return (
-    <PaperProvider></PaperProvider>
+    <PaperProvider>
+      <DFUScreen />
+    </PaperProvider>
   )
 }
