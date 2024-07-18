@@ -57,7 +57,6 @@
     "fix:lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "fix:prettier": "prettier --config .prettierrc --write '**/*.{ts,tsx,js,jsx}'",
     "plugins:compile": "ls -rtd plugins/*/*/*.ts | tail | xargs tsc",
-    "setup": "rm -rf node_modules && yarn install && expo prebuild --clean",
     "test": "echo \"Error: no test specified yet!\" && exit 1"
   },
   "version": "1.0.0"
