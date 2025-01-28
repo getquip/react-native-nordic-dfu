@@ -1,0 +1,5 @@
+.expo-env.d.ts
+/*.js
+/android/*
+/ios/*
+expo-env.d.ts

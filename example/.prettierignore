@@ -1,0 +1,2 @@
+plugins/**/*.js
+.expo-env.d.ts

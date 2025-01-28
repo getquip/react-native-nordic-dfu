@@ -13,13 +13,13 @@ Please keep in mind the our availability to maintain this fork is limited and is
 Install and link the NPM package per usual with
 
 ```bash
-npm install --save https://github.com/getquip/react-native-nordic-dfu
+npm install --save https://github.com/getquip/react-native-nordic-dfu#version
 ```
 
 or
 
 ```bash
-yarn add https://github.com/getquip/react-native-nordic-dfu
+yarn add https://github.com/getquip/react-native-nordic-dfu#version
 ```
 
 ## Setup
@@ -79,20 +79,11 @@ end
 
 ### Android
 
-Android does not require any special setup. Please see the [Android example project](example/android).
+Android does not require any special setup.
 
-## Example Project
+## Expo Example Project
 
-This example assumes you already have the basics installed to run cocapods, gradle, java, etc. Note that you must setup the xcode project with the correct Signing & Capabilities.
-
-1. `cd example`
-2. `yarn setup`
-3. Go to `example/App.tsx`
-4. Update the `filePath` variable with the link to the firmware file
-5. Update the `BleManagerService.init('', '');` function with the DFU Service & the device name
-6. Press `Connect to Device in Area` button
-7. When you see some small info about the device on the screen Press the `Start Update`
-8. If you have any problems connecting to the Device pleas consult the [react-native-ble-manager](https://github.com/innoveit/react-native-ble-manager)
+[View Example Project README](example/README.md)
 
 ## Resources
 
