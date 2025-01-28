@@ -23,8 +23,8 @@
   "main": "index.js",
   "name": "@getquip/react-native-nordic-dfu",
   "peerDependencies": {
-    "react": "~18.0",
-    "react-native": "~0.73"
+    "react": "^18.0",
+    "react-native": "^0.73"
   },
   "repository": "getquip/react-native-nordic-dfu",
   "scripts": {
