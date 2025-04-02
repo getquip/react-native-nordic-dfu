@@ -9,12 +9,12 @@ Pod::Spec.new do |s|
   s.description  = package["description"]
   s.license      = package['license']
   s.author       = package['author']
-  s.homepage     = package["homepage"]
+  s.homepage     = package["homepage"] || package["url"]
 
   s.platform     = :ios, "16.0"
   s.ios.deployment_target = "16.0"
 
-  s.source       = { git: 'https://github.com/getquip/react-native-nordic-dfu' }
+  s.source       = { :git => "#{package["repository"]["url"]}.git", :tag => s.version }
   s.static_framework = true
 
   s.dependency 'ExpoModulesCore'
