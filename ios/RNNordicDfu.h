@@ -1,7 +1,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
-#import <NordicDFU/NordicDFU-Swift.h>
+@import NordicDFU;
 
 NS_ASSUME_NONNULL_BEGIN
 
