@@ -1,4 +1,4 @@
-import { NativeModules, NativeEventEmitter, Platform } from "react-native";
+import { NativeModule, NativeModules, NativeEventEmitter, Platform } from "react-native";
 import type { Spec } from "./NativeNordicDfu";
 
 // Use the correct module based on architecture
@@ -6,19 +6,19 @@ import type { Spec } from "./NativeNordicDfu";
 let RNNordicDfu: Spec;
 try {
   // When using TurboModules, this import will succeed
-  const NordicDfuModule = require("./NativeNordicDfu").default;
-  RNNordicDfu = NordicDfuModule;
+  RNNordicDfu = require("./NativeNordicDfu").default;
 } catch (e) {
   // Fallback to the old architecture
   RNNordicDfu = NativeModules.RNNordicDfu;
 }
 
-const NordicDFU = { startDFU };
+/**
+ * Event emitter for DFU state and progress events
+ */
+const DFUEmitter = new NativeEventEmitter(RNNordicDfu as unknown as NativeModule);
 
 function rejectPromise(message: string): Promise<never> {
-  return new Promise((resolve, reject) => {
-    reject(new Error("NordicDFU.startDFU: " + message));
-  });
+  return Promise.reject(new Error(`NordicDFU.startDFU: ${message}`));
 }
 
 /**
@@ -57,7 +57,7 @@ function startDFU({
   }
   const upperDeviceAddress = deviceAddress.toUpperCase();
   if (Platform.OS === "ios") {
-    return RNNordicDfu.startDFU(
+    return RNNordicDfu.startDFUiOS(
       upperDeviceAddress,
       deviceName,
       filePath,
@@ -65,7 +65,7 @@ function startDFU({
       alternativeAdvertisingNameEnabled
     );
   } else if (Platform.OS === "android") {
-    return RNNordicDfu.startDFU(
+    return RNNordicDfu.startDFUAndroid(
       upperDeviceAddress,
       deviceName,
       filePath,
@@ -80,9 +80,6 @@ function startDFU({
   }
 }
 
-/**
- * Event emitter for DFU state and progress events
- */
-const DFUEmitter = new NativeEventEmitter(RNNordicDfu);
+const NordicDFU = { startDFU };
 
 export { NordicDFU, DFUEmitter };

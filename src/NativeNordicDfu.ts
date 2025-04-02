@@ -3,7 +3,7 @@ import { TurboModuleRegistry } from 'react-native';
 
 export interface Spec extends TurboModule {
   // iOS implementation
-  startDFU(
+  startDFUiOS(
     deviceAddress: string,
     deviceName: string | null,
     filePath: string,
@@ -12,7 +12,7 @@ export interface Spec extends TurboModule {
   ): Promise<string>;
 
   // Android implementation
-  startDFU(
+  startDFUAndroid(
     deviceAddress: string,
     deviceName: string | null,
     filePath: string,
@@ -23,12 +23,8 @@ export interface Spec extends TurboModule {
     }
   ): Promise<string>;
 
-  // Event constants
-  DFUProgress: string;
-  DFUStateChanged: string;
-
   // Add any other native methods used by the module
-  addListener(eventType: string): void;
+  addListener(eventType: 'DFUProgress' | 'DFUStateChanged'): void;
   removeListeners(count: number): void;
 }
 
