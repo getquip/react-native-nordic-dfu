@@ -16,6 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)setOnDFUComplete:(void (^_Nonnull)(void))onComplete;
 + (void)setOnDFUError:(void (^_Nonnull)(void))onError;
 
+#ifdef RCT_NEW_ARCH_ENABLED
+- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
+  (const facebook::react::ObjCTurboModule::InitParams &)params;
+#endif
+
 @end
 
 NS_ASSUME_NONNULL_END
