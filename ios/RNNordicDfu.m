@@ -13,150 +13,49 @@ RCT_EXPORT_MODULE();
 NSString * const DFUProgressEvent = @"DFUProgress";
 NSString * const DFUStateChangedEvent = @"DFUStateChanged";
 
-- (NSArray<NSString *> *)supportedEvents
-{
-  return @[DFUProgressEvent,
-           DFUStateChangedEvent,];
+- (NSArray<NSString *> *)supportedEvents {
+  return @[DFUProgressEvent, DFUStateChangedEvent];
 }
 
-- (NSString *)stateDescription:(enum DFUState)state
-{
-  switch (state)
-  {
-    case DFUStateAborted:
-      return @"DFU_ABORTED";
-    case DFUStateStarting:
-      return @"DFU_PROCESS_STARTING";
-    case DFUStateCompleted:
-      return @"DFU_COMPLETED";
-    case DFUStateUploading:
-      return @"DFU_STATE_UPLOADING";
-    case DFUStateConnecting:
-      return @"CONNECTING";
-    case DFUStateValidating:
-      return @"FIRMWARE_VALIDATING";
-    case DFUStateDisconnecting:
-      return @"DEVICE_DISCONNECTING";
-    case DFUStateEnablingDfuMode:
-      return @"ENABLING_DFU_MODE";
-    default:
-      return @"UNKNOWN_STATE";
+- (NSString *)stateDescription:(DFUState)state {
+  switch (state) {
+    case DFUStateAborted: return @"DFU_ABORTED";
+    case DFUStateStarting: return @"DFU_PROCESS_STARTING";
+    case DFUStateCompleted: return @"DFU_COMPLETED";
+    case DFUStateUploading: return @"DFU_STATE_UPLOADING";
+    case DFUStateConnecting: return @"CONNECTING";
+    case DFUStateValidating: return @"FIRMWARE_VALIDATING";
+    case DFUStateDisconnecting: return @"DEVICE_DISCONNECTING";
+    case DFUStateEnablingDfuMode: return @"ENABLING_DFU_MODE";
+    default: return @"UNKNOWN_STATE";
   }
 }
 
-- (NSString *)errorDescription:(enum DFUError)error
-{
-  switch(error)
-  {
-    case DFUErrorCrcError:
-      return @"DFUErrorCrcError";
-    case DFUErrorBytesLost:
-      return @"DFUErrorBytesLost";
-    case DFUErrorFileInvalid:
-      return @"DFUErrorFileInvalid";
-    case DFUErrorFailedToConnect:
-      return @"DFUErrorFailedToConnect";
-    case DFUErrorFileNotSpecified:
-      return @"DFUErrorFileNotSpecified";
-    case DFUErrorBluetoothDisabled:
-      return @"DFUErrorBluetoothDisabled";
-    case DFUErrorDeviceDisconnected:
-      return @"DFUErrorDeviceDisconnected";
-    case DFUErrorDeviceNotSupported:
-      return @"DFUErrorDeviceNotSupported";
-    case DFUErrorInitPacketRequired:
-      return @"DFUErrorInitPacketRequired";
-    case DFUErrorUnsupportedResponse:
-      return @"DFUErrorUnsupportedResponse";
-    case DFUErrorReadingVersionFailed:
-      return @"DFUErrorReadingVersionFailed";
-    case DFUErrorRemoteLegacyDFUSuccess:
-      return @"DFUErrorRemoteLegacyDFUSuccess";
-    case DFUErrorRemoteSecureDFUSuccess:
-      return @"DFUErrorRemoteSecureDFUSuccess";
-    case DFUErrorServiceDiscoveryFailed:
-      return @"DFUErrorServiceDiscoveryFailed";
-    case DFUErrorRemoteLegacyDFUCrcError:
-      return @"DFUErrorRemoteLegacyDFUCrcError";
-    case DFUErrorEnablingControlPointFailed:
-      return @"DFUErrorEnablingControlPointFailed";
-    case DFUErrorExtendedInitPacketRequired:
-      return @"DFUErrorExtendedInitPacketRequired";
-    case DFUErrorReceivingNotificationFailed:
-      return @"DFUErrorReceivingNotificationFailed";
-    case DFUErrorRemoteButtonlessDFUSuccess:
-      return @"DFUErrorRemoteButtonlessDFUSuccess";
-    case DFUErrorRemoteLegacyDFUInvalidState:
-      return @"DFUErrorRemoteLegacyDFUInvalidState";
-    case DFUErrorRemoteLegacyDFUNotSupported:
-      return @"DFUErrorRemoteLegacyDFUNotSupported";
-    case DFUErrorWritingCharacteristicFailed:
-      return @"DFUErrorWritingCharacteristicFailed";
-    case DFUErrorRemoteSecureDFUExtendedError:
-      return @"DFUErrorRemoteSecureDFUExtendedError";
-    case DFUErrorRemoteSecureDFUInvalidObject:
-      return @"DFUErrorRemoteSecureDFUInvalidObject";
-    case DFUErrorRemoteLegacyDFUOperationFailed:
-      return @"DFUErrorRemoteLegacyDFUOperationFailed";
-    case DFUErrorRemoteSecureDFUOperationFailed:
-      return @"DFUErrorRemoteSecureDFUOperationFailed";
-    case DFUErrorRemoteSecureDFUUnsupportedType:
-      return @"DFUErrorRemoteSecureDFUUnsupportedType";
-    case DFUErrorRemoteLegacyDFUDataExceedsLimit:
-      return @"DFUErrorRemoteLegacyDFUDataExceedsLimit";
-    case DFUErrorRemoteSecureDFUInvalidParameter:
-      return @"DFUErrorRemoteSecureDFUInvalidParameter";
-    case DFUErrorRemoteSecureDFUSignatureMismatch:
-      return @"DFUErrorRemoteSecureDFUSignatureMismatch";
-    case DFUErrorRemoteSecureDFUOpCodeNotSupported:
-      return @"DFUErrorRemoteSecureDFUOpCodeNotSupported";
-    case DFUErrorRemoteButtonlessDFUOperationFailed:
-      return @"DFUErrorRemoteButtonlessDFUOperationFailed";
-    case DFUErrorRemoteSecureDFUInsufficientResources:
-      return @"DFUErrorRemoteSecureDFUInsufficientResources";
-    case DFUErrorRemoteSecureDFUOperationNotPermitted:
-      return @"DFUErrorRemoteSecureDFUOperationNotPermitted";
-    case DFUErrorRemoteButtonlessDFUOpCodeNotSupported:
-      return @"DFUErrorRemoteButtonlessDFUOpCodeNotSupported";
-    case DFUErrorRemoteExperimentalButtonlessDFUSuccess:
-      return @"DFUErrorRemoteExperimentalButtonlessDFUSuccess";
-    case DFUErrorRemoteExperimentalButtonlessDFUOperationFailed:
-      return @"DFUErrorRemoteExperimentalButtonlessDFUOperationFailed";
-    case DFUErrorRemoteExperimentalButtonlessDFUOpCodeNotSupported:
-      return @"DFUErrorRemoteExperimentalButtonlessDFUOpCodeNotSupported";
-    default:
-      return @"UNKNOWN_ERROR";
-  }
+- (NSString *)errorDescription:(DFUError)error {
+  return [NSString stringWithFormat:@"DFUErrorCode_%ld", (long)error];
 }
 
-- (void)dfuStateDidChangeTo:(enum DFUState)state
-{
-  NSDictionary * evtBody = @{@"deviceAddress": self.deviceAddress,
-                             @"state": [self stateDescription:state],};
+- (void)dfuStateDidChangeTo:(DFUState)state {
+  NSDictionary *body = @{
+    @"deviceAddress": self.deviceAddress ?: @"",
+    @"state": [self stateDescription:state],
+  };
 
-  [self sendEventWithName:DFUStateChangedEvent body:evtBody];
+  [self sendEventWithName:DFUStateChangedEvent body:body];
 
   if (state == DFUStateCompleted) {
-    if (onDFUComplete) {
-      onDFUComplete();
-    }
-    NSDictionary * resolveBody = @{@"deviceAddress": self.deviceAddress,};
-
-    self.resolve(resolveBody);
+    if (onDFUComplete) onDFUComplete();
+    self.resolve(@{@"deviceAddress": self.deviceAddress ?: @""});
   }
 }
 
-- (void)   dfuError:(enum DFUError)error
-didOccurWithMessage:(NSString * _Nonnull)message
-{
-  if (onDFUError) {
-    onDFUError();
-  }
+- (void)dfuError:(DFUError)error didOccurWithMessage:(nonnull NSString *)message {
+  if (onDFUError) onDFUError();
 
-  NSDictionary * evtBody = @{@"deviceAddress": self.deviceAddress,
-                             @"state": @"DFU_FAILED",};
-
-  [self sendEventWithName:DFUStateChangedEvent body:evtBody];
+  [self sendEventWithName:DFUStateChangedEvent body:@{
+    @"deviceAddress": self.deviceAddress ?: @"",
+    @"state": @"DFU_FAILED"
+  }];
 
   self.reject([self errorDescription:error], message, nil);
 }
@@ -165,21 +64,21 @@ didOccurWithMessage:(NSString * _Nonnull)message
                           outOf:(NSInteger)totalParts
                              to:(NSInteger)progress
      currentSpeedBytesPerSecond:(double)currentSpeedBytesPerSecond
-         avgSpeedBytesPerSecond:(double)avgSpeedBytesPerSecond
-{
-  NSDictionary * evtBody = @{@"deviceAddress": self.deviceAddress,
-                             @"currentPart": [NSNumber numberWithInteger:part],
-                             @"partsTotal": [NSNumber numberWithInteger:totalParts],
-                             @"percent": [NSNumber numberWithInteger:progress],
-                             @"speed": [NSNumber numberWithDouble:currentSpeedBytesPerSecond],
-                             @"avgSpeed": [NSNumber numberWithDouble:avgSpeedBytesPerSecond],};
+         avgSpeedBytesPerSecond:(double)avgSpeedBytesPerSecond {
+  NSDictionary *body = @{
+    @"deviceAddress": self.deviceAddress ?: @"",
+    @"currentPart": @(part),
+    @"partsTotal": @(totalParts),
+    @"percent": @(progress),
+    @"speed": @(currentSpeedBytesPerSecond),
+    @"avgSpeed": @(avgSpeedBytesPerSecond)
+  };
 
-  [self sendEventWithName:DFUProgressEvent body:evtBody];
+  [self sendEventWithName:DFUProgressEvent body:body];
 }
 
-- (void)logWith:(enum LogLevel)level message:(NSString * _Nonnull)message
-{
-  NSLog(@"logWith: %ld message: '%@'", (long)level, message);
+- (void)logWith:(LogLevel)level message:(nonnull NSString *)message {
+  NSLog(@"[NordicDFU][%ld] %@", (long)level, message);
 }
 
 RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
@@ -188,110 +87,96 @@ RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
                   packetReceiptNotificationParameter:(NSInteger)packetReceiptNotificationParameter
                   alternativeAdvertisingNameEnabled:(BOOL)alternativeAdvertisingNameEnabled
                   resolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
-{
+                  rejecter:(RCTPromiseRejectBlock)reject) {
   self.deviceAddress = deviceAddress;
   self.resolve = resolve;
   self.reject = reject;
 
   if (!getCentralManager) {
     reject(@"nil_central_manager_getter", @"Attempted to start DFU without central manager getter", nil);
-  } else {
-    CBCentralManager * centralManager = getCentralManager();
-
-    if (!centralManager) {
-      reject(@"nil_central_manager", @"Call to getCentralManager returned nil", nil);
-    } else if (!deviceAddress) {
-      reject(@"nil_device_address", @"Attempted to start DFU with nil deviceAddress", nil);
-    } else if (!filePath) {
-      reject(@"nil_file_path", @"Attempted to start DFU with nil filePath", nil);
-    } else {
-      NSUUID * uuid = [[NSUUID alloc] initWithUUIDString:deviceAddress];
-      [NSThread sleepForTimeInterval: 1]; //Work around for not finding the peripheral in iOS 13
-
-      // Change for iOS 13
-      [NSThread sleepForTimeInterval: 1]; //Work around for not finding the peripheral in iOS 13
-      // End change for iOS 13
-
-      NSArray<CBPeripheral *> * peripherals = [centralManager retrievePeripheralsWithIdentifiers:@[uuid]];
-
-      if ([peripherals count] != 1) {
-        reject(@"unable_to_find_device", @"Could not find device with deviceAddress", nil);
-      } else {
-        CBPeripheral * peripheral = [peripherals objectAtIndex:0];
-        @try {
-            NSURL *url = [NSURL URLWithString:filePath];
-            DFUFirmware * firmware;
-            NSError * initError;
-            NSString * extension = [url pathExtension];
-
-            if (([extension caseInsensitiveCompare:@"bin"] == NSOrderedSame) ||
-                  ([extension caseInsensitiveCompare:@"hex"] == NSOrderedSame)) {
-                firmware = [[DFUFirmware alloc] initWithUrlToBinOrHexFile:url urlToDatFile:nil type:4 error:nil];
-            } else {
-                firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url error:&initError];
-            }
-
-            if (initError != nil) {
-                reject(@"nil_firmware", @"Could not create dfu firmware file for provided url", nil);
-                return;
-            }
-
-            //  DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc] initWithQueue:dispatch_get_main_queue() delegateQueue:dispatch_get_main_queue() progressQueue:dispatch_get_main_queue() loggerQueue:dispatch_get_main_queue() centralManagerOptions:nil]
-            //                                withFirmware:firmware];
-
-            DFUServiceInitiator * initiator = [[[DFUServiceInitiator alloc]
-                                                initWithCentralManager:centralManager
-                                                target:peripheral]
-                                               withFirmware:firmware];
-
-            initiator.logger = self;
-            initiator.delegate = self;
-            initiator.progressDelegate = self;
-            initiator.packetReceiptNotificationParameter = packetReceiptNotificationParameter;
-            initiator.alternativeAdvertisingNameEnabled = alternativeAdvertisingNameEnabled;
-            initiator.connectionTimeout = 20.0;
-
-            // Change for iOS 13
-            initiator.packetReceiptNotificationParameter = 1; //Rate limit the DFU using PRN.
-            [NSThread sleepForTimeInterval: 2]; //Work around for being stuck in iOS 13
-            // End change for iOS 13
-
-            self.controller = [initiator startWithTarget:peripheral];
-
-        } @catch (NSException *exception) {
-            NSLog(@"Error creating DFUFirmware: %@", exception.reason);
-            // Handle the error appropriately
-        }
-      }
-    }
+    return;
   }
+
+  CBCentralManager *centralManager = getCentralManager();
+  if (!centralManager) {
+    reject(@"nil_central_manager", @"Call to getCentralManager returned nil", nil);
+    return;
+  }
+
+  if (!deviceAddress || !filePath) {
+    reject(@"invalid_parameters", @"deviceAddress and filePath are required", nil);
+    return;
+  }
+
+  NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:deviceAddress];
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    NSArray<CBPeripheral *> *peripherals = [centralManager retrievePeripheralsWithIdentifiers:@[uuid]];
+    CBPeripheral *peripheral = peripherals.firstObject;
+
+    if (!peripheral) {
+      reject(@"unable_to_find_device", @"Could not find device with deviceAddress", nil);
+      return;
+    }
+
+    @try {
+      NSURL *url = [NSURL URLWithString:filePath];
+      DFUFirmware *firmware;
+      NSError *initError;
+      NSString *extension = [url pathExtension];
+
+      if ([extension caseInsensitiveCompare:@"bin"] == NSOrderedSame ||
+          [extension caseInsensitiveCompare:@"hex"] == NSOrderedSame) {
+        firmware = [[DFUFirmware alloc] initWithUrlToBinOrHexFile:url urlToDatFile:nil type:4 error:&initError];
+      } else {
+        firmware = [[DFUFirmware alloc] initWithUrlToZipFile:url error:&initError];
+      }
+
+      if (initError || !firmware) {
+        reject(@"invalid_firmware", @"Could not create DFUFirmware instance", initError);
+        return;
+      }
+
+      DFUServiceInitiator *initiator = [[[DFUServiceInitiator alloc]
+        initWithCentralManager:centralManager
+                       target:peripheral]
+        withFirmware:firmware];
+
+      initiator.logger = self;
+      initiator.delegate = self;
+      initiator.progressDelegate = self;
+      initiator.packetReceiptNotificationParameter = packetReceiptNotificationParameter;
+      initiator.alternativeAdvertisingNameEnabled = alternativeAdvertisingNameEnabled;
+      initiator.connectionTimeout = 20.0;
+
+      self.controller = [initiator startWithTarget:peripheral];
+
+    } @catch (NSException *exception) {
+      NSLog(@"DFU Exception: %@", exception.reason);
+      reject(@"firmware_init_exception", exception.reason, nil);
+    }
+  });
 }
 
 RCT_EXPORT_METHOD(abortDFU:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
-    if (self.controller != nil) {
-        bool aborted = [self.controller abort];
-        self.controller = nil;
-        resolve([NSNumber numberWithBool:aborted]);
-    } else {
-        reject(@"no_controller", @"Controller is not instanciated yet, use startDFU method first.", nil);
-    }
-
+  if (self.controller) {
+    BOOL aborted = [self.controller abort];
+    self.controller = nil;
+    resolve(@(aborted));
+  } else {
+    reject(@"no_controller", @"No DFU controller available", nil);
+  }
 }
 
-+ (void)setCentralManagerGetter:(CBCentralManager * (^)(void))getter
-{
++ (void)setCentralManagerGetter:(CBCentralManager * _Nonnull (^)(void))getter {
   getCentralManager = getter;
 }
 
-+ (void)setOnDFUComplete:(void (^)(void))onComplete
-{
++ (void)setOnDFUComplete:(void (^ _Nonnull)(void))onComplete {
   onDFUComplete = onComplete;
 }
 
-+ (void)setOnDFUError:(void (^)(void))onError
-{
++ (void)setOnDFUError:(void (^ _Nonnull)(void))onError {
   onDFUError = onError;
 }
 
