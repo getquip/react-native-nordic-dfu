@@ -1,4 +1,4 @@
-package com.pilloxa.dfu;
+package com.getquip.nordic;
 
 import no.nordicsemi.android.dfu.DfuBaseService;
 import android.app.Activity;

@@ -81,7 +81,7 @@ NSString * const DFUStateChangedEvent = @"DFUStateChanged";
   NSLog(@"[NordicDFU][%ld] %@", (long)level, message);
 }
 
-RCT_EXPORT_METHOD(startDFU:(NSString *)deviceAddress
+RCT_EXPORT_METHOD(startDFUiOS:(NSString *)deviceAddress
                   deviceName:(NSString *)deviceName
                   filePath:(NSString *)filePath
                   packetReceiptNotificationParameter:(NSInteger)packetReceiptNotificationParameter

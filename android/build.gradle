@@ -1,30 +1,41 @@
+apply plugin: 'com.android.library'
 
-buildscript {
-    repositories {
-        mavenCentral()
-        google()
+group = 'com.getquip.nordic'
+version = '0.1.0'
+
+def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
+apply from: expoModulesCorePlugin
+applyKotlinExpoModulesCorePlugin()
+useCoreDependencies()
+useExpoPublishing()
+
+// If you want to use the managed Android SDK versions from expo-modules-core, set this to true.
+// The Android SDK versions will be bumped from time to time in SDK releases and may introduce breaking changes in your module code.
+// Most of the time, you may like to manage the Android SDK versions yourself.
+def useManagedAndroidSdkVersions = false
+if (useManagedAndroidSdkVersions) {
+    useDefaultAndroidSdkVersions()
+} else {
+    buildscript {
+        // Simple helper that allows the root project to override versions declared by this library.
+        ext.safeExtGet = { prop, fallback ->
+        rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+        }
     }
-
-    dependencies {
-        classpath("com.android.tools.build:gradle:7.4.2")
+    project.android {
+        compileSdkVersion safeExtGet("compileSdkVersion", 34)
+        defaultConfig {
+        minSdkVersion safeExtGet("minSdkVersion", 21)
+        targetSdkVersion safeExtGet("targetSdkVersion", 34)
+        }
     }
 }
 
-apply plugin: 'com.android.library'
-
-def DEFAULT_COMPILE_SDK_VERSION = 34
-def DEFAULT_BUILD_TOOLS_VERSION = '34.0.0'
-def DEFAULT_TARGET_SDK_VERSION = 34
-
 android {
-    compileSdkVersion project.hasProperty('compileSdkVersion') ? project.compileSdkVersion : DEFAULT_COMPILE_SDK_VERSION
-    buildToolsVersion project.hasProperty('buildToolsVersion') ? project.buildToolsVersion : DEFAULT_BUILD_TOOLS_VERSION
-
+    namespace "com.getquip.nordic"
     defaultConfig {
-        minSdkVersion 30
-        targetSdkVersion project.hasProperty('targetSdkVersion') ? project.targetSdkVersion : DEFAULT_TARGET_SDK_VERSION
         versionCode 1
-        versionName "1.0"
+        versionName "0.1.0"
     }
     lintOptions {
         abortOnError false

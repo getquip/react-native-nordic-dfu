@@ -2,7 +2,7 @@
 #import <React/RCTEventEmitter.h>
 
 #ifdef RCT_NEW_ARCH_ENABLED
-#import <RNNordicDfuSpec/RNNordicDfuSpec.h>
+#import <RNNordicDfu/RNNordicDfu.h>
 #endif
 
 @interface RNNordicDfu : RCTEventEmitter <RCTBridgeModule>

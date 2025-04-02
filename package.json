@@ -1,61 +1,57 @@
 {
   "author": "getquip",
-  "codegenConfig": {
-    "android": {
-      "javaPackageName": "com.nordicnordic"
-    },
-    "jsSrcsDir": "src",
-    "name": "RNNordicDfuSpec",
-    "type": "modules"
+  "bugs": {
+    "url": "https://github.com/getquip/react-native-nordic-dfu/issues"
   },
   "dependencies": {},
-  "description": "Nordic Device Firmware Update for React Native",
+  "description": "Nordic DFU for Expo",
   "devDependencies": {
-    "documentation": "^13.2.5",
-    "husky": "^7.0.2",
-    "lint-staged": "^11.1.2",
+    "@types/react": "~18.3.12",
+    "expo": "~52.0.0",
+    "expo-module-scripts": "^4.0.4",
     "prettier": "^2.3.2",
-    "react": "18",
-    "react-native": "0.76"
+    "react-native": "0.76.0"
   },
-  "expo": {
-    "name": "react-native-nordic-dfu",
+  "expo-module": {
     "platforms": [
       "ios",
       "android"
-    ]
-  },
-  "expo-module": {
+    ],
     "plugin": "./app.plugin.js"
   },
   "keywords": [
     "react-native",
     "dfu",
     "nordic",
-    "expo",
-    "expo-plugin"
+    "expo"
   ],
   "license": "MIT",
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ],
-    "index.js": [
-      "npm run document",
-      "git add README.md"
-    ]
-  },
-  "main": "index.js",
+  "main": "build/index.js",
   "name": "@getquip/react-native-nordic-dfu",
-  "peerDependencies": {},
+  "peerDependencies": {
+    "expo": "^52.0.0",
+    "react": ">=18.0.0",
+    "react-native": ">=0.73.0"
+  },
+  "react-native": {
+    "codegenConfig": {
+      "jsSrcsDir": "src",
+      "libraryName": "RNNordicDfu",
+      "name": "RNNordicDfu",
+      "type": "modules"
+    }
+  },
   "repository": "getquip/react-native-nordic-dfu",
   "scripts": {
-    "document": "documentation readme --readme-file README.md -s \"API\" -g",
-    "precommit": "lint-staged",
-    "test": "echo \"No test specified\""
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "expo-module": "expo-module",
+    "lint": "expo-module lint",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "test": "expo-module test"
   },
-  "types": "./index.d.ts",
+  "types": "build/index.d.ts",
   "url": "https://github.com/getquip/react-native-nordic-dfu",
-  "version": "5.1.1"
+  "version": "5.1.2"
 }

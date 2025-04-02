@@ -1,5 +1,5 @@
 
-package com.pilloxa.dfu;
+package com.getquip.nordic;
 
 import android.app.NotificationManager;
 import android.content.Context;
@@ -37,7 +37,7 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
     }
 
     @ReactMethod
-    public void startDFU(String address, String name, String uri, int packetReceiptNotificationParameter, ReadableMap options, Promise promise) {
+    public void startDFUAndroid(String address, String name, String uri, int packetReceiptNotificationParameter, ReadableMap options, Promise promise) {
         mPromise = promise;
         final DfuServiceInitiator starter = new DfuServiceInitiator(address)
                 .setKeepBond(false);
@@ -77,7 +77,7 @@ public class RNNordicDfuModule extends ReactContextBaseJavaModule implements Lif
             controller.abort();
             promise.resolve(new Boolean(controller.isAborted()));
         } else {
-            mPromise.reject("10", "Controller not set, use startDFU first");
+            mPromise.reject("10", "Controller not set, use startDFUAndroid first");
         }
     }
 

@@ -1,4 +1,4 @@
-package com.pilloxa.dfu;
+package com.getquip.nordic;
 
 import android.app.Activity;
 import android.content.Intent;

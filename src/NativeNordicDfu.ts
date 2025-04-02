@@ -1,29 +1,26 @@
-import { TurboModule } from 'react-native';
 import { TurboModuleRegistry } from 'react-native';
+import type { TurboModule } from 'react-native';
 
 export interface Spec extends TurboModule {
-  // iOS implementation
   startDFUiOS(
     deviceAddress: string,
-    deviceName: string | null,
+    deviceName: string,
     filePath: string,
     packetReceiptNotificationParameter: number,
     alternativeAdvertisingNameEnabled: boolean
   ): Promise<string>;
 
-  // Android implementation
   startDFUAndroid(
     deviceAddress: string,
-    deviceName: string | null,
+    deviceName: string,
     filePath: string,
     packetReceiptNotificationParameter: number,
-    options: {
-      retries: number,
-      maxMtu: number,
-    }
+    retries: number,
+    maxMtu: number
   ): Promise<string>;
 
-  // Add any other native methods used by the module
+  abortDFU: () => Promise<boolean>;
+
   addListener(eventType: 'DFUProgress' | 'DFUStateChanged'): void;
   removeListeners(count: number): void;
 }
