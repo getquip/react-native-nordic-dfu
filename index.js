@@ -1,12 +1,33 @@
 import {NativeModules, NativeEventEmitter, Platform} from 'react-native';
-const {RNNordicDfu} = NativeModules;
-const NordicDFU = {startDFU, abortDFU};
+
+// Check if we're using the new architecture
+const isNewArchitectureEnabled = global.nativeFabricUIManager != null;
+
+// Get the native module - either from the new TurboModule system or the old NativeModules
+let RNNordicDfu;
+if (isNewArchitectureEnabled) {
+  try {
+    // Attempt to load the TurboModule
+    const NordicDfuModule = require("./src/NativeNordicDfu").default;
+    RNNordicDfu = NordicDfuModule;
+  } catch (e) {
+    // Fallback to legacy module
+    RNNordicDfu = NativeModules.RNNordicDfu;
+  }
+} else {
+  // Using old architecture
+  RNNordicDfu = NativeModules.RNNordicDfu;
+}
+
+const NordicDFU = { startDFU };
 
 function rejectPromise(message) {
   return new Promise((resolve, reject) => {
-    reject(new Error('NordicDFU.startDFU: ' + message));
+    reject(new Error("NordicDFU.startDFU: " + message));
   });
 }
+
+/**
 
 /**
  *
