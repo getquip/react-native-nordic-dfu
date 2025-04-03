@@ -1,7 +1,6 @@
 import ExpoModulesCore
 
-@objc(RNNordicDfuModule)
-public class RNNordicDfuModule: NSObject, Module {
+public class RNNordicDfuModule: Module {
   public func definition() -> ModuleDefinition {
     Name("RNNordicDfu")
 
